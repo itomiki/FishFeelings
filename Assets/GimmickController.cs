@@ -8,6 +8,7 @@ public class GimmickController : MonoBehaviour{
     private float Amplitude;
     //周波数
     private float Omega;
+    //private float Frequency;
 
     //エサギミックの落下速度
     private float Fallspeed = -2;
@@ -23,14 +24,20 @@ public class GimmickController : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         //振幅の大きさを決める
-        int amp = Random.Range(5, 31);
-		this.Amplitude = amp / 1000.0f;
+        int amp = Random.Range(10, 81);
+        //int amp = Random.Range(5, 31);
+		this.Amplitude = amp / 100.0f;
+		//this.Amplitude = amp / 1000.0f;
 		Debug.Log("Amplitude " + this.Amplitude);
 
         //周波数の値を決める
         int omg = Random.Range(5, 10);
 		this.Omega = omg / 10.0f;
-		Debug.Log("Omega " + this.Omega);
+		Debug.Log("Omega" + this.Omega);
+
+        //int frq = Random.Range(5, 10);
+		//this.Frequency = frq / 10.0f;
+		//Debug.Log("Frequency " + this.Frequency);
 
         //エサギミックの引き上げ時間を決める
         int ott = Random.Range(16, 21);
@@ -49,7 +56,8 @@ public class GimmickController : MonoBehaviour{
 		//目的地到達後かつ引き上げ時間に満たない場合
         }else if(this.Currentdistance > this.Falldistance && this.Outtime >= this.Currenttime){
 			//エサギミックを上下に揺らす
-			transform.Translate(0.0f, this.Amplitude * Mathf.Sin(this.Omega * Time.time), 0.0f);
+			transform.Translate(0.0f, (this.Amplitude * Mathf.Sin(this.Omega * Time.time) * Time.deltaTime), 0.0f);
+			//transform.Translate(0.0f, this.Amplitude * Mathf.Sin(2 * Mathf.PI * this.Frequency * Time.time), 0.0f);
 			this.Currenttime += Time.deltaTime;
 
         //引き上げ時間を満たした場合
