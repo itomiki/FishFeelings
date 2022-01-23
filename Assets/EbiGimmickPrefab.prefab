@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6684372581279058414}
   m_Layer: 0
   m_Name: ebi
-  m_TagString: Untagged
+  m_TagString: ebi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2442689, y: -0.028737426}
+  m_Offset: {x: -0.4470383, y: 0.044998348}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -109,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.165022, y: 2.6160839}
+  m_Size: {x: 3.386227, y: 2.763555}
   m_EdgeRadius: 0
 --- !u!50 &6684372581279058417
 Rigidbody2D:
@@ -390,6 +390,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6684372583193711711}
   - component: {fileID: 1656070745117395479}
+  - component: {fileID: 4962041622419385129}
+  - component: {fileID: 2691320046161583253}
   m_Layer: 0
   m_Name: EbiGimmickPrefab
   m_TagString: Untagged
@@ -425,3 +427,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e76c8eccb19340b78fe8d6d315b8a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &4962041622419385129
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684372583193711708}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &2691320046161583253
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684372583193711708}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.23772812, y: -1.705786}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8458786, y: 0.6438842}
+  m_EdgeRadius: 0
