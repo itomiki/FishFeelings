@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour{
     private GameObject ScoreControllerObject;
     private ScoreController ScoreController;
 
-
     //移動量
     private float velocity = 3.0f;
 	//Playerの向きを指定（1 == 左向き, -1 == 右向き）
@@ -60,7 +59,7 @@ public class PlayerController : MonoBehaviour{
             //エサに当たってない時
             case false:
 				//移動
-				if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)){
+				if((Input.GetKey(KeyCode.W) && transform.position.y < 5.0f) || (Input.GetKey(KeyCode.UpArrow) && transform.position.y < 5.0f)){
 					this.myRigidbody.velocity = new Vector2(0.0f, this.velocity);
 					//Swimアニメーション
 					this.myAnimator.SetBool("Swim", true);
@@ -100,11 +99,14 @@ public class PlayerController : MonoBehaviour{
                 //playerをエサに固定する
                 if(this.Key == 1){
 					this.transform.position = ItemObject.transform.position + new Vector3(1.0f, 0.0f, 0.0f);
+
                 }else if(this.Key == -1){
                     if(this.ItemObject.tag == "noodle"){
 						this.transform.position = ItemObject.transform.position + new Vector3(-1.0f, 0.0f, 0.0f);
+
                     }else if(this.ItemObject.tag == "onigiri"){
 						this.transform.position = ItemObject.transform.position + new Vector3(-1.25f, 0.0f, 0.0f);
+
                     }else{
 						this.transform.position = ItemObject.transform.position + new Vector3(-1.5f, 0.0f, 0.0f);
                     }
@@ -139,7 +141,9 @@ public class PlayerController : MonoBehaviour{
                 break;
         }
         //playerが画面上部へ移動した時
-        if(transform.position.y >= 11.0f){
+        if(transform.position.y >= 8.0f){
+            //GameOverを表示
+
             //playerを破壊
             Destroy(gameObject);
         }
@@ -159,22 +163,21 @@ public class PlayerController : MonoBehaviour{
                 //cakeやburgerに当たった時
                 case "cake":
                 case "burger":
-                    esaHP = 2000.0f;
+                    esaHP = 6000.0f;
                     esaPoint = 250.0f;
-                    //esaHP = 20000.0f;
                     break;
 
                 //ebiやnoodleに当たった時
                 case "ebi":
                 case "noodle":
-                    esaHP = 1000.0f;
+                    esaHP = 3000.0f;
                     esaPoint = 100.0f;
                     break;
 
                 //onigiriやsyokupanに当たった時
                 case "onigiri":
                 case "syokupan":
-                    esaHP = 500.0f;
+                    esaHP = 1000.0f;
                     esaPoint = 25.0f;
                     break;
             }

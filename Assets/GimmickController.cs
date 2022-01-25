@@ -27,10 +27,38 @@ public class GimmickController : MonoBehaviour{
     private bool isPlayerHit = false;
 
     //衝突したエサのオブジェクト
-    private GameObject ItemObject;
+    //private GameObject ItemObject;
+
+    //
+    private GameObject grandChild_Object;
 
     // Start is called before the first frame update
     void Start(){
+        //孫オブジェクトがcakeの場合
+        if (gameObject.tag == "Cake"){
+            this.grandChild_Object = transform.Find("fishingline/cake").gameObject;
+
+		//孫オブジェクトがburgerの場合
+        }else if(gameObject.tag == "Burger"){
+            this.grandChild_Object = transform.Find("fishingline/burger").gameObject;
+
+		//孫オブジェクトがebiの場合
+        }else if(gameObject.tag == "Ebi"){
+            this.grandChild_Object = transform.Find("fishingline/ebi").gameObject;
+
+		//孫オブジェクトがnoodleの場合
+        }else if(gameObject.tag == "Noodle"){
+            this.grandChild_Object = transform.Find("fishingline/noodle").gameObject;
+
+		//孫オブジェクトがonigiriの場合
+        }else if(gameObject.tag == "Onigiri"){
+            this.grandChild_Object = transform.Find("fishingline/onigiri").gameObject;
+
+		//孫オブジェクトがsyokupanの場合
+        }else if(gameObject.tag == "Syokupan"){
+            this.grandChild_Object = transform.Find("fishingline/syokupan").gameObject;
+        }
+
         //振幅の大きさを決める
         int amp = Random.Range(10, 81);
 		this.Amplitude = amp / 100.0f;
@@ -69,9 +97,13 @@ public class GimmickController : MonoBehaviour{
 			this.Currenttime += Time.deltaTime;
 
 		//引き上げ時間を満たした場合_または_エサが食べられた場合
-        }else if(this.Outtime < this.Currenttime || this.ItemObject == null){
+        }else if(this.Outtime < this.Currenttime || this.grandChild_Object == null){
             //エサギミックを上昇させる
             transform.Translate(0.0f, -this.Fallspeed * Time.deltaTime, 0.0f);
+
+            //if(this.grandChild_Object == null){
+            //    Debug.Log("Esa = null");
+            //}
 
             if(transform.position.y > 15.0f){
                 //エサギミックを破壊する
@@ -97,10 +129,10 @@ public class GimmickController : MonoBehaviour{
     }
 
     //判定から離れた
-    void OnTriggerExit2D (Collider2D other){
-        //エサが針から離れた時
-        if(other.gameObject.tag == "cake" || other.gameObject.tag == "burger" || other.gameObject.tag == "ebi" || other.gameObject.tag == "noodle" || other.gameObject.tag == "onigiri" || other.gameObject.tag == "syokupan"){
-            this.ItemObject = other.gameObject;
-		}
-    }
+    //void OnTriggerExit2D (Collider2D other){
+    //    //エサが針から離れた時
+    //    if(other.gameObject.tag == "cake" || other.gameObject.tag == "burger" || other.gameObject.tag == "ebi" || other.gameObject.tag == "noodle" || other.gameObject.tag == "onigiri" || other.gameObject.tag == "syokupan"){
+    //        this.ItemObject = other.gameObject;
+	//	}
+    //}
 }

@@ -11,6 +11,19 @@ TagManager:
   - onigiri
   - syokupan
   - player
+  - underwall
+  - leftwall
+  - rightwall
+  - petbottle
+  - sekkenbottle
+  - glassbrown
+  - glassgreen
+  - Cake
+  - Burger
+  - Ebi
+  - Noodle
+  - Onigiri
+  - Syokupan
   layers:
   - Default
   - TransparentFX

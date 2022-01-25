@@ -112,6 +112,7 @@ public class EsaGimmickGenerator : MonoBehaviour{
         }
     }
 
+    //エサギミックを配置する関数
     public void EsaGimmickPosCtrl(float MakePos_x){
         //EsaGimmickを配置するY座標を決める
         int MakePos_y = Random.Range(this.MinimumPos_y, this.MaximumPos_y);
