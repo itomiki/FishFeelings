@@ -37,7 +37,6 @@ public class TrashGenerator : MonoBehaviour{
     //現在の経過時間
     private float CurrentTime = 0.0f;
 
-
     // Start is called before the first frame update
     void Start(){
         //FirstTimeおよびSecondTimeおよびThirdTimeをランダムで決める

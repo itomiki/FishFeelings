@@ -29,7 +29,7 @@ public class GimmickController : MonoBehaviour{
     //衝突したエサのオブジェクト
     //private GameObject ItemObject;
 
-    //
+    //孫オブジェクト（エサオブジェクト）
     private GameObject grandChild_Object;
 
     // Start is called before the first frame update
@@ -76,7 +76,7 @@ public class GimmickController : MonoBehaviour{
 		//Debug.Log("Frequency " + this.Frequency);
 
         //エサギミックの引き上げ時間を決める
-        int ott = Random.Range(16, 21);
+        int ott = Random.Range(5, 10);
         this.Outtime = ott * 1.0f;
 		//Debug.Log("OutTime " + this.Outtime);
     }
@@ -133,6 +133,6 @@ public class GimmickController : MonoBehaviour{
     //    //エサが針から離れた時
     //    if(other.gameObject.tag == "cake" || other.gameObject.tag == "burger" || other.gameObject.tag == "ebi" || other.gameObject.tag == "noodle" || other.gameObject.tag == "onigiri" || other.gameObject.tag == "syokupan"){
     //        this.ItemObject = other.gameObject;
-	//	}
+	//    }
     //}
 }

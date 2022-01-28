@@ -8,6 +8,8 @@ public class TrashController : MonoBehaviour{
     private Rigidbody2D myRigidbody;
     //Collider2Dを入れる
     private Collider2D myObjectCollider2D;
+    //
+    private AudioSource myAudioSource;
 
     //地面に触れたかどうか（true == 触れた, false == 触れてない）
     private bool isTouch = false;
@@ -16,8 +18,13 @@ public class TrashController : MonoBehaviour{
     private GameObject ScoreControllerObject;
     private ScoreController ScoreController;
 
+    //
+    private GameObject SoundObject;
+    private GameObject TrashSoundObject;
+    private TrashSoundPlay TrashSoundPlay;
+
     //落下速度
-    private float FallSpeed = -0.5f;
+    private float FallSpeed = -0.9f;
     //振幅および周波数（落下時の揺れに使用）
     private float Amplitude = 30.0f;
     private float Omega = 1.0f;
@@ -31,6 +38,11 @@ public class TrashController : MonoBehaviour{
         //ScoreControllerスクリプトを取得
         this.ScoreControllerObject = GameObject.Find("ScoreController");
         this.ScoreController = this.ScoreControllerObject.GetComponent<ScoreController>();
+
+        //
+        this.SoundObject = GameObject.Find("Sound");
+        this.TrashSoundObject = GameObject.Find("TrashSound");
+        this.TrashSoundPlay = this.TrashSoundObject.GetComponent<TrashSoundPlay>();
     }
 
     // Update is called once per frame
@@ -52,13 +64,18 @@ public class TrashController : MonoBehaviour{
             //自身がglassbrownまたはpetbottleの場合
             if(gameObject.tag == "glassbrown" || gameObject.tag == "petbottle"){
                 //ScoreControllerスクリプトのScoreIncrease関数を呼び出す
-                this.ScoreController.ScoreIncrease(0.5f);
+                this.ScoreController.ScoreIncrease(0.3f);
 
 			//自身がglassgreenまたはsekkenbottleの場合
             }else if(gameObject.tag == "glassgreen" || gameObject.tag == "sekkenbottle"){
                 //ScoreControllerスクリプトのScoreIncrease関数を呼び出す
-                this.ScoreController.ScoreIncrease(1.0f);
+                this.ScoreController.ScoreIncrease(0.5f);
             }
+            //
+            //GetComponent<AudioSource>().Play();
+            //
+            this.TrashSoundPlay.trashSound();
+
             //オブジェクトを破壊する
             Destroy(this.gameObject);
 
