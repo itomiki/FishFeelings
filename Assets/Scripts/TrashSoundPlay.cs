@@ -14,6 +14,7 @@ public class TrashSoundPlay : MonoBehaviour{
         
     }
 
+    //ゴミに接触した際の音を鳴らす（TrashControllerスクリプトから呼び出す）
     public void trashSound(){
         GetComponent<AudioSource>().Play();
     }

@@ -49,14 +49,16 @@ public class PlayerController : MonoBehaviour{
     //タイマー（大きくなる用）
     private float BigTimer = 0.0f;
 
-    //
+    //Gameが終了したかどうか（true == 終了, false == ゲームプレイ中）
     private bool isFinish = false;
 
-    //
+    //Playerがエサに触れた時の音
+    public AudioClip touch;
+    //エサを獲得した時の音
     public AudioClip get;
-    //
+    //攻撃時の音
     public AudioClip swipe;
-    //
+    //AudioSourceコンポーネントを入れる
     private AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -64,7 +66,7 @@ public class PlayerController : MonoBehaviour{
         //Rigidbody2Dコンポーネントを取得
         this.myRigidbody = GetComponent<Rigidbody2D>();
 
-        //
+        //AudioSourceコンポーネントを取得
         this.audioSource = GetComponent<AudioSource>();
         
         //ajiオブジェクトの実体を検索
@@ -101,8 +103,9 @@ public class PlayerController : MonoBehaviour{
         //大きくなるタイマー
         BigTimer += Time.deltaTime;
 
-        //エサへの衝突有無
+        //ゲームが終了していない場合
         if(isFinish == false){
+			//エサへの衝突有無
 			switch (isItem){
 				//エサに当たってない時
 				case false:
@@ -178,12 +181,15 @@ public class PlayerController : MonoBehaviour{
 						//エサにダメージを与える
 						this.esaHP -= this.swipeLength * esaAttackBonus;
 
+                        //攻撃音を鳴らす
+                        this.audioSource.PlayOneShot(swipe);
+
 						//esaHPが0以下の時
 						if(this.esaHP <= 0){
 							//ScoreControllerのScoreAdd関数を呼び出す
 							this.ScoreController.ScoreAdd(this.esaPoint);
-							//
-							this.audioSource.PlayOneShot(swipe);
+                            //エサ獲得時の音を鳴らす
+                            this.audioSource.PlayOneShot(get);
 							//エサを破壊
 							Destroy(this.ItemObject);
 							this.isItem = false;
@@ -194,7 +200,7 @@ public class PlayerController : MonoBehaviour{
         }
 
         //playerが画面上部へ移動した時
-        if(transform.position.y >= 6.5f){
+        if(transform.position.y >= 7.0f){
             //GameOverを表示（UIControllerスクリプトのGameOver関数を呼び出す）
             this.UIController.GameOver();
             //playerを破壊
@@ -206,36 +212,38 @@ public class PlayerController : MonoBehaviour{
     void OnTriggerEnter2D (Collider2D other){
         //エサに当たった時
         if(other.gameObject.tag == "cake" || other.gameObject.tag == "burger" || other.gameObject.tag == "ebi" || other.gameObject.tag == "noodle" || other.gameObject.tag == "onigiri" || other.gameObject.tag == "syokupan"){
-            //エサのRigidbody2Dをoff
-            other.GetComponent<Rigidbody2D>().simulated = false;
-			isItem = true;
-			this.ItemObject = other.gameObject;
+			if(isItem == false){
+				//エサのRigidbody2Dをoff
+				other.GetComponent<Rigidbody2D>().simulated = false;
+				isItem = true;
+				this.ItemObject = other.gameObject;
 
-            //
-            this.audioSource.PlayOneShot(get);
+                //エサ接触時の音を鳴らす
+                this.audioSource.PlayOneShot(touch);
 
-            //衝突したエサの種類によって
-            switch(other.gameObject.tag){
-                //cakeやburgerに当たった時
-                case "cake":
-                case "burger":
-                    esaHP = 10000.0f;
-                    esaPoint = 250.0f;
-                    break;
+				//衝突したエサの種類によって
+				switch(other.gameObject.tag){
+					//cakeやburgerに当たった時
+					case "cake":
+					case "burger":
+						esaHP = 10000.0f;
+						esaPoint = 250.0f;
+						break;
 
-                //ebiやnoodleに当たった時
-                case "ebi":
-                case "noodle":
-                    esaHP = 5000.0f;
-                    esaPoint = 100.0f;
-                    break;
+					//ebiやnoodleに当たった時
+					case "ebi":
+					case "noodle":
+						esaHP = 5000.0f;
+						esaPoint = 100.0f;
+						break;
 
-                //onigiriやsyokupanに当たった時
-                case "onigiri":
-                case "syokupan":
-                    esaHP = 1000.0f;
-                    esaPoint = 25.0f;
-                    break;
+					//onigiriやsyokupanに当たった時
+					case "onigiri":
+					case "syokupan":
+						esaHP = 1000.0f;
+						esaPoint = 25.0f;
+						break;
+                }
             }
             /*　if文のパターン
             if(other.gameObject.tag == "cake" || other.gameObject.tag == "burger"){
@@ -252,13 +260,15 @@ public class PlayerController : MonoBehaviour{
     //大きくする関数（ScoreControllerスクリプトから呼び出す）
     public void IsBigBig(){
         this.isBigBig = true;
+        //esaAttackBonusを加算
         this.esaAttackBonus += 0.5f;
         this.BigTimer = 0.0f;
     }
 
-    //
+    //ゲーム終了関数（UIControllerスクリプトから呼び出す）
     public void IsFinish(){
         this.isFinish = true;
+        //Playerの重力を0にする
         this.myRigidbody.gravityScale = 0;
     }
 }

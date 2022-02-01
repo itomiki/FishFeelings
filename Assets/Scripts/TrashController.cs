@@ -8,7 +8,7 @@ public class TrashController : MonoBehaviour{
     private Rigidbody2D myRigidbody;
     //Collider2Dを入れる
     private Collider2D myObjectCollider2D;
-    //
+    //AudioSourceコンポーネントを入れる
     private AudioSource myAudioSource;
 
     //地面に触れたかどうか（true == 触れた, false == 触れてない）
@@ -18,7 +18,7 @@ public class TrashController : MonoBehaviour{
     private GameObject ScoreControllerObject;
     private ScoreController ScoreController;
 
-    //
+    //TrashSoundPlayスクリプトを呼び出すために使用
     private GameObject SoundObject;
     private GameObject TrashSoundObject;
     private TrashSoundPlay TrashSoundPlay;
@@ -39,7 +39,7 @@ public class TrashController : MonoBehaviour{
         this.ScoreControllerObject = GameObject.Find("ScoreController");
         this.ScoreController = this.ScoreControllerObject.GetComponent<ScoreController>();
 
-        //
+        //TrashSoundPlayスクリプトを取得
         this.SoundObject = GameObject.Find("Sound");
         this.TrashSoundObject = GameObject.Find("TrashSound");
         this.TrashSoundPlay = this.TrashSoundObject.GetComponent<TrashSoundPlay>();
@@ -71,9 +71,7 @@ public class TrashController : MonoBehaviour{
                 //ScoreControllerスクリプトのScoreIncrease関数を呼び出す
                 this.ScoreController.ScoreIncrease(0.5f);
             }
-            //
-            //GetComponent<AudioSource>().Play();
-            //
+            //TrashSoundPlayスクリプトのtrashSound関数を呼び出す
             this.TrashSoundPlay.trashSound();
 
             //オブジェクトを破壊する

@@ -26,6 +26,5 @@ public class TitleObjectController : MonoBehaviour{
 
 		//エサギミックを上下に揺らす
 		transform.Translate(0.0f, (this.Amplitude * Mathf.Sin(this.Omega * Time.time) * Time.deltaTime), 0.0f);
-        
     }
 }
