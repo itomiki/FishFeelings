@@ -61,6 +61,49 @@ public class PlayerController : MonoBehaviour{
     //AudioSourceコンポーネントを入れる
     private AudioSource audioSource;
 
+	//--------------------------------------------------------------------------------
+	// 角度クリップ
+	//--------------------------------------------------------------------------------
+	
+    private float ClipDirection360( float direction) {
+        if( direction < 0.0f) {
+            return 360.0f + direction;
+        }
+        if( direction >= 360.0f) {
+            return direction - 360.0f;
+        }
+        return direction;
+    }
+
+    private float ClipDirection180( float direction) {
+        direction = ClipDirection360( direction);
+        direction = direction + 180.0f;
+        if( direction >= 360.0f) {
+            direction = direction - 360.0f;
+        }
+        return direction - 180.0f;
+    }
+
+	//--------------------------------------------------------------------------------
+	// 方向・角度
+	//--------------------------------------------------------------------------------
+	
+    private float GetDirection( float x1, float y1, float x2, float y2) {
+        if( (x2 - x1) == 0.0f && (y2 - y1) == 0.0f) {
+            return 0.0f;
+        } else {
+            return ClipDirection360( (((Mathf.PI / 2.0f) - Mathf.Atan2( y1 - y2, x1 - x2)) * (180.0f / Mathf.PI)) + 180.0f);
+        }
+    }
+
+    private float GetLength( float x1, float y1, float x2, float y2) {
+        return Mathf.Sqrt( ((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2)));
+    }
+
+	//********************************************************************************
+	// スタート
+	//********************************************************************************
+	
     // Start is called before the first frame update
     void Start(){
         //Rigidbody2Dコンポーネントを取得
@@ -84,6 +127,10 @@ public class PlayerController : MonoBehaviour{
         //UIControllerを取得
         this.UIController = this.CanvasObject.GetComponent<UIController>();
     }
+
+	//********************************************************************************
+	// アップデート
+	//********************************************************************************
 
     // Update is called once per frame
     void Update(){
@@ -132,11 +179,41 @@ public class PlayerController : MonoBehaviour{
 						this.Key = -1;
 
 					}else{
-						this.myRigidbody.velocity = new Vector2(0.0f, 0.0f);
-						//Idleアニメーション
-						this.myAnimator.SetBool("Swim", false);
-						//Debug.Log(this.myAnimator.GetBool("Swim"));
+						//マウスで動かすプログラム
+						if( Input.GetMouseButton( 0)) {
+							// アスペクト
+							float CanvasAspectY = 1080.0f / Screen.height;
+							float CanvasAspectX = CanvasAspectY;
 
+							//Debug.Log( ((Input.mousePosition.x - (Screen.width * 0.5f)) * CanvasAspectX) * 0.01f);
+					
+							//マウスの座標
+							float x = ((Input.mousePosition.x - (Screen.width * 0.5f)) * CanvasAspectX) * 0.01f;
+							float y = ((Input.mousePosition.y - (Screen.height * 0.5f)) * CanvasAspectY) * 0.01f;
+
+							//向きを変える
+							if( x > this.transform.position.x) {
+								//右向き
+								this.Key = -1;
+							} else {
+								//左向き
+								this.Key = 1;
+							}
+
+							//方向 0～360°
+							float d = GetDirection( this.transform.position.x, this.transform.position.y, x, y);
+
+							//移動
+							this.myRigidbody.velocity = new Vector2( Mathf.Sin( d * Mathf.Deg2Rad) * velocity, Mathf.Cos( d * Mathf.Deg2Rad) * velocity);
+
+							//Swimアニメーション
+							this.myAnimator.SetBool("Swim", true);							
+						} else {
+							this.myRigidbody.velocity = new Vector2(0.0f, 0.0f);
+							//Idleアニメーション
+							this.myAnimator.SetBool("Swim", false);
+							//Debug.Log(this.myAnimator.GetBool("Swim"));
+						}
 					}
 
 					//Playerの向きを変える

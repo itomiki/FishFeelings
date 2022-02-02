@@ -24,6 +24,10 @@ TagManager:
   - Noodle
   - Onigiri
   - Syokupan
+  - GoTitleButton
+  - GoStartButton
+  - GoNextButton
+  - GoBackButton
   layers:
   - Default
   - TransparentFX

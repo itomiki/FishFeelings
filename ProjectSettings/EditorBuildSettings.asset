@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScene.unity
     guid: e1acc25203ded4796bc405d51acd956d
   - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: 5281acfef0e3e4917b258961380757da
+  - enabled: 1
     path: Assets/Scenes/CountDownScene.unity
     guid: dd87f53bac8114c84965a85ccd1e75d3
   - enabled: 1

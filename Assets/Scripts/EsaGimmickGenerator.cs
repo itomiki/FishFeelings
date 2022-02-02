@@ -79,8 +79,8 @@ public class EsaGimmickGenerator : MonoBehaviour{
         if(this.esa0_object == null){
             
             this.nextEsaTime0 += Time.deltaTime;
-            //破壊されてから3秒後
-            if(this.nextEsaTime0 >= 3.0f){
+            //破壊されてから2秒後
+            if(this.nextEsaTime0 >= 2.0f){
 				this.EsaGimmickPos[0] = 0;
                 this.nextEsaTime0 = 0.0f;
             }
@@ -89,7 +89,7 @@ public class EsaGimmickGenerator : MonoBehaviour{
         if(this.esa1_object == null){
 
             this.nextEsaTime1 += Time.deltaTime;
-            if(this.nextEsaTime1 >= 3.0f){
+            if(this.nextEsaTime1 >= 2.0f){
 				this.EsaGimmickPos[1] = 0;
                 this.nextEsaTime1 = 0.0f;
             }
@@ -97,7 +97,7 @@ public class EsaGimmickGenerator : MonoBehaviour{
         //ポイント2のエサギミックが破壊された場合
         if(this.esa2_object == null){
             this.nextEsaTime2 += Time.deltaTime;
-            if(this.nextEsaTime2 >= 3.0f){
+            if(this.nextEsaTime2 >= 2.0f){
 				this.EsaGimmickPos[2] = 0;
                 this.nextEsaTime2 = 0.0f;
 			}
@@ -105,7 +105,7 @@ public class EsaGimmickGenerator : MonoBehaviour{
         //ポイント3のエサギミックが破壊された場合
         if(this.esa3_object == null){
             this.nextEsaTime3 += Time.deltaTime;
-            if(this.nextEsaTime3 >= 3.0f){
+            if(this.nextEsaTime3 >= 2.0f){
 				this.EsaGimmickPos[3] = 0;
                 this.nextEsaTime3 = 0.0f;
 			}
@@ -215,25 +215,25 @@ public class EsaGimmickGenerator : MonoBehaviour{
         if(MakePos_x == LeftMaxPos_x){
 			this.esa0_object = Instantiate(this.EsaType);
 			this.esa0_object.transform.position = new Vector2(MakePos_x + (offset_x / 10.0f) * i, MakePos_y + (offset_y / 10.0f));
-            Debug.Log(this.EsaGrade);
+            //Debug.Log(this.EsaGrade);
             //Debug.Log(cake.transform.position.x + ", " + cake.transform.position.y);
 
         }else if(MakePos_x == LeftMiddlePos_x){
 			this.esa1_object = Instantiate(this.EsaType);
 			this.esa1_object.transform.position = new Vector2(MakePos_x + (offset_x / 10.0f) * i, MakePos_y + (offset_y / 10.0f));
-            Debug.Log(this.EsaGrade);
+            //Debug.Log(this.EsaGrade);
             //Debug.Log(cake.transform.position.x + ", " + cake.transform.position.y);
 
         }else if(MakePos_x == RightMiddlePos_x){
 			this.esa2_object = Instantiate(this.EsaType);
 			this.esa2_object.transform.position = new Vector2(MakePos_x + (offset_x / 10.0f) * i, MakePos_y + (offset_y / 10.0f));
-            Debug.Log(this.EsaGrade);
+            //Debug.Log(this.EsaGrade);
             //Debug.Log(cake.transform.position.x + ", " + cake.transform.position.y);
 
         }else if(MakePos_x == RightMaxPos_x){
 			this.esa3_object = Instantiate(this.EsaType);
 			this.esa3_object.transform.position = new Vector2(MakePos_x + (offset_x / 10.0f) * i, MakePos_y + (offset_y / 10.0f));
-            Debug.Log(this.EsaGrade);
+            //Debug.Log(this.EsaGrade);
             //Debug.Log(cake.transform.position.x + ", " + cake.transform.position.y);
         }
     }

@@ -80,7 +80,7 @@ public class ScoreController : MonoBehaviour{
         this.TotalScore += (comeScore * this.ScoreAddRate);
         //ComeTotalScore関数を呼び出して現在のスコアを渡す
         this.UIController.ComeTotalScore(this.TotalScore);
-        Debug.Log(this.TotalScore);
+        //Debug.Log(this.TotalScore);
     }
 
     //スコア上昇関数（TrashControllerスクリプトから呼び出す）
@@ -89,6 +89,6 @@ public class ScoreController : MonoBehaviour{
         this.ScoreAddRate += IncreaseRate;
         //スコア上昇割合をComeScoreIncrease関数に渡す
         this.UIController.ComeScoreIncrease(IncreaseRate * 100.0f);
-        Debug.Log("ScoreIncreaseRate = " + this.ScoreAddRate);
+        //Debug.Log("ScoreIncreaseRate = " + this.ScoreAddRate);
     }
 }

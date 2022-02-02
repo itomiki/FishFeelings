@@ -57,22 +57,22 @@ public class TrashGenerator : MonoBehaviour{
         if(this.CurrentTime >= this.FirstTime && this.FirstTerm == false){
             this.FirstTerm = true;
             TrashGenerate();
-            Debug.Log("TrashGenerator FirstTerm OK");
-            Debug.Log("FirstTime = " + this.FirstTime);
+            //Debug.Log("TrashGenerator FirstTerm OK");
+            //Debug.Log("FirstTime = " + this.FirstTime);
 
 		//TrashObject第2便
         }else if(this.CurrentTime >= this.SecondTime && this.SecondTerm == false){
             this.SecondTerm = true;
             TrashGenerate();
-            Debug.Log("TrashGenerator SecondTerm OK");
-            Debug.Log("SecondTime = " + this.SecondTime);
+            //Debug.Log("TrashGenerator SecondTerm OK");
+            //Debug.Log("SecondTime = " + this.SecondTime);
 
 		//TrashObject第3便
         }else if(this.CurrentTime >= this.ThirdTime && this.ThirdTerm == false){
             this.ThirdTerm = true;
             TrashGenerate();
-            Debug.Log("TrashGenerator ThirdTerm OK");
-            Debug.Log("ThirdTime = " + this.ThirdTime);
+            //Debug.Log("TrashGenerator ThirdTerm OK");
+            //Debug.Log("ThirdTime = " + this.ThirdTime);
         }
 
         //経過時間を更新

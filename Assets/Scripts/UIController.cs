@@ -98,10 +98,10 @@ public class UIController : MonoBehaviour{
             //スコアを表示する
             if(TotalScore >= 5000){
                 //スコアが5000を超えた場合”????”にする
-                this.totalScoreText.GetComponent<Text>().text = "Score: ????pt";
+                this.totalScoreText.GetComponent<Text>().text = "????pt";
 
             }else{
-				this.totalScoreText.GetComponent<Text>().text = "Score: " + this.TotalScore.ToString("F0") + "pt";
+				this.totalScoreText.GetComponent<Text>().text = this.TotalScore.ToString("F0") + "pt";
             }
 
             //DisplayTimeを計算
@@ -137,7 +137,7 @@ public class UIController : MonoBehaviour{
     public void ComeScoreIncrease(float comeIncreaseRate){
         this.IncreaseRate += comeIncreaseRate;
         this.scoreBonusText.GetComponent<Text>().text = "+" + this.IncreaseRate.ToString("F0") + "%UP";
-        Debug.Log("UI_ComeScoreIncrease");
+        //Debug.Log("UI_ComeScoreIncrease");
     }
 
     //GameOver関数（PlayerControllerスクリプトから呼び出す）
