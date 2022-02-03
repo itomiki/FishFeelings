@@ -61,6 +61,16 @@ public class PlayerController : MonoBehaviour{
     //AudioSourceコンポーネントを入れる
     private AudioSource audioSource;
 
+    //
+    private bool isUpButtonDown = false;
+    //
+    private bool isDownButtonDown = false;
+    //
+    private bool isLeftButtonDown = false;
+    //
+    private bool isRightButtonDown = false;
+
+
 	//--------------------------------------------------------------------------------
 	// 角度クリップ
 	//--------------------------------------------------------------------------------
@@ -157,22 +167,22 @@ public class PlayerController : MonoBehaviour{
 				//エサに当たってない時
 				case false:
 					//移動
-					if((Input.GetKey(KeyCode.W) && transform.position.y < 5.0f) || (Input.GetKey(KeyCode.UpArrow) && transform.position.y < 5.0f)){
+					if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || this.isUpButtonDown) && transform.position.y < 5.0f){
 						this.myRigidbody.velocity = new Vector2(0.0f, this.velocity);
 						//Swimアニメーション
 						this.myAnimator.SetBool("Swim", true);
 
-					}else if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)){
+					}else if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || this.isDownButtonDown){
 						this.myRigidbody.velocity = new Vector2(0.0f, -this.velocity);
 						this.myAnimator.SetBool("Swim", true);
 
-					}else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)){
+					}else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || this.isLeftButtonDown){
 						this.myRigidbody.velocity = new Vector2(-this.velocity, 0.0f);
 						this.myAnimator.SetBool("Swim", true);
 						//左向き
 						this.Key = 1;
 
-					}else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
+					}else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || this.isRightButtonDown){
 						this.myRigidbody.velocity = new Vector2(this.velocity, 0.0f);
 						this.myAnimator.SetBool("Swim", true);
 						//右向き
@@ -347,5 +357,41 @@ public class PlayerController : MonoBehaviour{
         this.isFinish = true;
         //Playerの重力を0にする
         this.myRigidbody.gravityScale = 0;
+    }
+
+    //
+    public void GetMyUpButtonDown(){
+        this.isUpButtonDown = true;
+    }
+    //
+    public void GetMyUpButtonUp(){
+        this.isUpButtonDown = false;
+    }
+
+    //
+    public void GetMyDownButtonDown(){
+        this.isDownButtonDown = true;
+    }
+    //
+    public void GetMyDownButtonUp(){
+        this.isDownButtonDown = false;
+    }
+
+    //
+    public void GetMyLeftButtonDown(){
+        this.isLeftButtonDown = true;
+    }
+    //
+    public void GetMyLeftButtonUp(){
+        this.isLeftButtonDown = false;
+    }
+
+    //
+    public void GetMyRightButtonDown(){
+        this.isRightButtonDown = true;
+    }
+    //
+    public void GetMyRightButtonUp(){
+        this.isRightButtonDown = false;
     }
 }
