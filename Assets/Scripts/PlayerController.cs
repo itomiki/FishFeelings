@@ -61,13 +61,13 @@ public class PlayerController : MonoBehaviour{
     //AudioSourceコンポーネントを入れる
     private AudioSource audioSource;
 
-    //
+    //UpButton押下の判定
     private bool isUpButtonDown = false;
-    //
+    //DownButton押下の判定
     private bool isDownButtonDown = false;
-    //
+    //LeftButton押下の判定
     private bool isLeftButtonDown = false;
-    //
+    //RightButton押下の判定
     private bool isRightButtonDown = false;
 
 
@@ -359,38 +359,38 @@ public class PlayerController : MonoBehaviour{
         this.myRigidbody.gravityScale = 0;
     }
 
-    //
+    //UpButtonを押した場合の処理
     public void GetMyUpButtonDown(){
         this.isUpButtonDown = true;
     }
-    //
+    //UpButtonを離した場合の処理
     public void GetMyUpButtonUp(){
         this.isUpButtonDown = false;
     }
 
-    //
+    //DownButtonを押した場合の処理
     public void GetMyDownButtonDown(){
         this.isDownButtonDown = true;
     }
-    //
+    //DownButtonを離した場合の処理
     public void GetMyDownButtonUp(){
         this.isDownButtonDown = false;
     }
 
-    //
+    //LeftButtonを押した場合の処理
     public void GetMyLeftButtonDown(){
         this.isLeftButtonDown = true;
     }
-    //
+    //LeftButtonを離した場合の処理
     public void GetMyLeftButtonUp(){
         this.isLeftButtonDown = false;
     }
 
-    //
+    //RightButtonを押した場合の処理
     public void GetMyRightButtonDown(){
         this.isRightButtonDown = true;
     }
-    //
+    //RightButtonを離した場合の処理
     public void GetMyRightButtonUp(){
         this.isRightButtonDown = false;
     }

@@ -5,10 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class TutorialController : MonoBehaviour{
 
+    //---------------
+    //WebGL_Version
+    //---------------
+    ///*
     //Tutorial1オブジェクトを入れる
     private GameObject tutorial1_Object;
     //Tutorial2オブジェクトを入れる
     private GameObject tutorial2_Object;
+    //---------------
+    //*/
+
+    //---------------
+    //Android_Version
+    //---------------
+    /*
+    //Tutorial1_Androidオブジェクトを入れる
+    private GameObject tutorial1_Android_Object;
+    //Tutorial2_Androidオブジェクトを入れる
+    private GameObject tutorial2_Android_Object;
+    //---------------
+    */
 
     //GoNextButtonを入れる
     private GameObject goNextButtonObject;
@@ -17,6 +34,10 @@ public class TutorialController : MonoBehaviour{
 
     // Start is called before the first frame update
     void Start(){
+		//---------------
+		//WebGL_Version
+		//---------------
+        ///*
         //Tutorial1オブジェクトの実体を検索する
         tutorial1_Object = GameObject.Find("Tutorial1");
 
@@ -24,6 +45,22 @@ public class TutorialController : MonoBehaviour{
         tutorial2_Object = GameObject.Find("Tutorial2");
         //Tutorial2オブジェクトを非表示にする
         tutorial2_Object.SetActive(false);
+		//---------------
+        //*/
+
+		//---------------
+		//Android_Version
+		//---------------
+        /*
+        //Tutorial1_Androidオブジェクトの実体を検索する
+        tutorial1_Android_Object = GameObject.Find("Tutorial1_Android");
+
+        //Tutorial2_Androidオブジェクトの実体を検索する
+        tutorial2_Android_Object = GameObject.Find("Tutorial2_Android");
+        //Tutorial2_Androidオブジェクトを非表示にする
+        tutorial2_Android_Object.SetActive(false);
+		//---------------
+        */
 
 
         //GoNextButtonの実体を検索する
@@ -84,10 +121,27 @@ public class TutorialController : MonoBehaviour{
         //GoBackButtonを表示する
         goBackButtonObject.SetActive(true);
 
+		//---------------
+		//WebGL_Version
+		//---------------
+        ///*
         //Tutorial1を非表示にする
         tutorial1_Object.SetActive(false);
         //Tutorial2を表示する
         tutorial2_Object.SetActive(true);
+        //*/
+		//---------------
+
+		//---------------
+		//Android_Version
+		//---------------
+        /*
+        //Tutorial1_Androidを非表示にする
+        tutorial1_Android_Object.SetActive(false);
+        //Tutorial2_Androidを表示する
+        tutorial2_Android_Object.SetActive(true);
+        */
+		//---------------
     }
     //Tutorial2からTutorial1に遷移する
     public void BackButtonSetActive(){
@@ -96,9 +150,26 @@ public class TutorialController : MonoBehaviour{
         //GoBackButtonを非表示にする
         goBackButtonObject.SetActive(false);
 
+		//---------------
+		//WebGL_Version
+		//---------------
+        ///*
         //Tutorial1を表示する
         tutorial1_Object.SetActive(true);
         //Tutorial2を非表示にする
         tutorial2_Object.SetActive(false);
+        //*/
+		//---------------
+
+		//---------------
+		//Android_Version
+		//---------------
+        /*
+        //Tutorial1_Androidを表示する
+        tutorial1_Android_Object.SetActive(true);
+        //Tutorial2_Androidを非表示にする
+        tutorial2_Android_Object.SetActive(false);
+        */
+		//---------------
     }
 }
